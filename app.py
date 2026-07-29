@@ -20,7 +20,8 @@ st.title("⚡ Paired PDF to Excel Auto Converter")
 st.write("আপনার ৫০-৬০ জোড়া বা একাধিক পার্টের PDF ফাইল একত্রে আপলোড করুন। অ্যাপটি স্বয়ংক্রিয়ভাবে জোড়া চিনে Excel-এর প্রতি সারিতে নির্ভুল ডাটা বসিয়ে দেবে।")
 
 # --- ২. সাইলেন্ট API Key রিড (Streamlit Secrets) ---
-API_KEY = st.secrets.get("GEMINI_API_KEY", os.environ.get("GEMINI_API_KEY"))
+raw_key = st.secrets.get("GEMINI_API_KEY", os.environ.get("GEMINI_API_KEY", ""))
+API_KEY = str(raw_key).strip().strip('"').strip("'")
 
 if not API_KEY:
     st.error("⚠️ Server Configuration Error: Gemini API Key পাওয়া যায়নি! Streamlit Secrets-এ API Key সেট করুন।")
